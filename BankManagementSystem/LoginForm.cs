@@ -41,12 +41,12 @@ namespace BankManagementSystem
 
             if (count > 0)
             {
-                MessageBox.Show("Login successful!", "Welcome",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DashboardForm dashboard = new DashboardForm();
                 this.Hide();
                 dashboard.FormClosed += (s, args) => this.Close();
                 dashboard.Show();
+                MessageBox.Show("Login successful!", "Welcome",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

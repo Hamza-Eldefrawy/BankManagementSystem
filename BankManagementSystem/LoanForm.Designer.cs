@@ -212,6 +212,10 @@
             this.dgvLoans.Name = "dgvLoans";
             this.dgvLoans.Size = new System.Drawing.Size(499, 525);
             this.dgvLoans.TabIndex = 36;
+            //
+            //
+            //
+            this.Load += new System.EventHandler(this.LoanForm_Load);
             // 
             // LoanForm
             // 

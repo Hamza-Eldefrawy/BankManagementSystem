@@ -176,6 +176,10 @@
             this.dgvAccounts.Name = "dgvAccounts";
             this.dgvAccounts.Size = new System.Drawing.Size(505, 536);
             this.dgvAccounts.TabIndex = 30;
+            //
+            //
+            //
+            this.Load += new System.EventHandler(this.AccountForm_Load);
             // 
             // AccountForm
             // 

@@ -146,6 +146,10 @@
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 30;
             this.label4.Text = "Account";
+            //
+            //
+            //
+            this.Load += new System.EventHandler(this.TransactionForm_Load);
             // 
             // TransactionForm
             // 
