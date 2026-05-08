@@ -112,11 +112,39 @@ namespace BankManagementSystem
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             string ssn = txtSSN.Text.Trim();
-            string fname = txtFname.Text.Trim();
-            string lname = txtLname.Text.Trim();
-            string address = txtAddress.Text.Trim();
+
+            // Get existing data first
+            string selectQuery = "SELECT Fname, Lname, Adress, DOB FROM Customer WHERE SSN = @ssn";
+            SqlParameter[] selectParams =
+            {
+                new SqlParameter("@ssn", ssn)
+            };
+
+            DataTable dt = DatabaseHelper.ExecuteQuery(selectQuery, selectParams);
+
+            if (dt.Rows.Count == 0)
+            {
+                MessageBox.Show("Customer not found!");
+                return;
+            }
+
+            DataRow row = dt.Rows[0];
+
+            string fname = string.IsNullOrWhiteSpace(txtFname.Text)
+                ? row["Fname"].ToString()
+                : txtFname.Text.Trim();
+
+            string lname = string.IsNullOrWhiteSpace(txtLname.Text)
+                ? row["Lname"].ToString()
+                : txtLname.Text.Trim();
+
+            string address = string.IsNullOrWhiteSpace(txtAddress.Text)
+                ? row["Adress"].ToString()
+                : txtAddress.Text.Trim();
+
             string phone = txtPhone.Text.Trim();
-            string dob = dtpDOB.Value.ToString("yyyy-MM-dd");
+
+            DateTime dob = Convert.ToDateTime(row["DOB"]);
 
             string query =
                 "UPDATE Customer SET " +
@@ -139,55 +167,48 @@ namespace BankManagementSystem
 
             if (result > 0)
             {
-                string checkPhoneQuery =
-                    "SELECT COUNT(*) FROM Customer_Phone WHERE SSN = @ssn";
-
-                SqlParameter[] checkParams =
+                if (!string.IsNullOrWhiteSpace(phone))
                 {
-                    new SqlParameter("@ssn", ssn)
-                };
+                    string checkPhoneQuery =
+                        "SELECT COUNT(*) FROM Customer_Phone WHERE SSN = @ssn";
 
-                object countObj =
-                    DatabaseHelper.ExecuteScalar(checkPhoneQuery, checkParams);
-
-                int count = Convert.ToInt32(countObj);
-
-                if (count > 0)
-                {
-                    string updatePhoneQuery =
-                        "UPDATE Customer_Phone " +
-                        "SET Phone = @phone " +
-                        "WHERE SSN = @ssn";
-
-                    SqlParameter[] phoneParams =
+                    SqlParameter[] checkParams =
                     {
-                        new SqlParameter("@phone", phone),
                         new SqlParameter("@ssn", ssn)
                     };
 
-                    DatabaseHelper.ExecuteNonQuery(
-                        updatePhoneQuery,
-                        phoneParams);
-                }
-                else
-                {
-                    string insertPhoneQuery =
-                        "INSERT INTO Customer_Phone (SSN, Phone) " +
-                        "VALUES (@ssn, @phone)";
+                    object countObj = DatabaseHelper.ExecuteScalar(checkPhoneQuery, checkParams);
+                    int count = Convert.ToInt32(countObj);
 
-                    SqlParameter[] phoneParams =
+                    if (count > 0)
                     {
-                        new SqlParameter("@ssn", ssn),
-                        new SqlParameter("@phone", phone)
-                    };
+                        string updatePhoneQuery =
+                            "UPDATE Customer_Phone SET Phone = @phone WHERE SSN = @ssn";
 
-                    DatabaseHelper.ExecuteNonQuery(
-                        insertPhoneQuery,
-                        phoneParams);
+                        SqlParameter[] phoneParams =
+                        {
+                            new SqlParameter("@phone", phone),
+                            new SqlParameter("@ssn", ssn)
+                        };
+
+                        DatabaseHelper.ExecuteNonQuery(updatePhoneQuery, phoneParams);
+                    }
+                    else
+                    {
+                        string insertPhoneQuery =
+                            "INSERT INTO Customer_Phone (SSN, Phone) VALUES (@ssn, @phone)";
+
+                        SqlParameter[] phoneParams =
+                        {
+                            new SqlParameter("@ssn", ssn),
+                            new SqlParameter("@phone", phone)
+                        };
+
+                        DatabaseHelper.ExecuteNonQuery(insertPhoneQuery, phoneParams);
+                    }
                 }
 
                 MessageBox.Show("Customer updated successfully!");
-
                 LoadCustomers();
             }
         }
