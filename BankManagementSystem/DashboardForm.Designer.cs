@@ -54,6 +54,7 @@
             this.btnAccounts.TabIndex = 1;
             this.btnAccounts.Text = "Manage Accounts";
             this.btnAccounts.UseVisualStyleBackColor = true;
+            this.btnAccounts.Click += new System.EventHandler(this.btnAccount_Click);
             // 
             // btnLoans
             // 
@@ -63,6 +64,7 @@
             this.btnLoans.TabIndex = 2;
             this.btnLoans.Text = "Manage Loans";
             this.btnLoans.UseVisualStyleBackColor = true;
+            this.btnLoans.Click += new System.EventHandler(this.btnLoans_Click);
             // 
             // btnTransactions
             // 
@@ -72,6 +74,7 @@
             this.btnTransactions.TabIndex = 3;
             this.btnTransactions.Text = "Manage Transactions";
             this.btnTransactions.UseVisualStyleBackColor = true;
+            this.btnTransactions.Click += new System.EventHandler(this.btnTransactions_Click);
             // 
             // btnLogout
             // 

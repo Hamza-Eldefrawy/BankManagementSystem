@@ -78,6 +78,10 @@ namespace BankManagementSystem
             }
         }
 
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadLoans();
+        }
         private void dgvLoans_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

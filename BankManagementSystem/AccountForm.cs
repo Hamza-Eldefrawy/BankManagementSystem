@@ -104,6 +104,11 @@ namespace BankManagementSystem
             }
         }
 
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadAccounts();
+        }
+
         private void dgvAccounts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

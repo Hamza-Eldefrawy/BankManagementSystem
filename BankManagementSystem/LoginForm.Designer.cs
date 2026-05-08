@@ -44,7 +44,6 @@
             this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
-            //this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtUsername
             // 
@@ -61,7 +60,6 @@
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Password";
-            //this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtPassword
             // 
@@ -78,6 +76,7 @@
             this.btnExit.TabIndex = 4;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnLogin
             // 
@@ -105,7 +104,6 @@
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bank Management System - Login";
-            //this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

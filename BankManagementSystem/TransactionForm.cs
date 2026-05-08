@@ -34,6 +34,11 @@ namespace BankManagementSystem
             dgvTransactions.DataSource = DatabaseHelper.ExecuteQuery(query);
         }
 
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadTransactions();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int txnID = int.Parse(txtTxnID.Text);
