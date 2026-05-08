@@ -97,5 +97,10 @@ namespace BankManagementSystem
                 cmbAccount.Text = row.Cells["AccountID"].Value.ToString();
             }
         }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

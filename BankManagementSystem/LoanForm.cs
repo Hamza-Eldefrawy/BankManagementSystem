@@ -107,5 +107,10 @@ namespace BankManagementSystem
                 new SqlParameter("@cust", cmbCustomer.SelectedValue.ToString())
             };
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

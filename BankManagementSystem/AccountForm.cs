@@ -119,5 +119,10 @@ namespace BankManagementSystem
                 cmbType.Text = row.Cells["Type"].Value.ToString();
             }
         }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

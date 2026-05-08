@@ -311,5 +311,10 @@ namespace BankManagementSystem
                     Convert.ToDateTime(row.Cells["DOB"].Value);
             }
         }
+
+        private void btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
